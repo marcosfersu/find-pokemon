@@ -1,0 +1,99 @@
+:root {
+  --bgGradian: linear-gradient(
+    219deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(88, 89, 91, 1) 100%
+  );
+}
+
+.img-pokemon {
+  display: grid;
+  grid-auto-rows: 10% 80% 10%;
+  grid-auto-columns: 80%;
+  grid-auto-flow: row;
+  justify-content: center;
+  background: var(--bgGradian);
+  border-radius: 4em;
+  margin-right: 1em;
+  -webkit-box-shadow: 0px 0px 29px 5px #8c8c8c;
+  box-shadow: 0px 0px 29px 5px #8c8c8c;
+}
+
+.image-pokemon {
+  opacity: 0;
+}
+.image-pokemon.active {
+  animation-duration: 0.4s;
+  animation-name: pokemonOpen;
+  opacity: 1;
+}
+
+@keyframes pokemonOpen {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 100%;
+    transform: scale(1);
+  }
+}
+
+.numb-arrow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  width: 100%;
+  font-weight: 100;
+  align-items: center;
+  margin-bottom: 4em;
+}
+
+.numb-arrow p {
+  margin: 0;
+}
+
+.numb-arrow p.arrow {
+  cursor: pointer;
+}
+
+.numb-arrow p.number {
+  font-size: 3em;
+  font-weight: 100;
+}
+
+.image-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+
+.image-main img {
+  width: 70%;
+  object-fit: contain;
+}
+
+.image-main img.image-pokeball {
+  position: absolute;
+  width: 80%;
+}
+
+.pokemon-element-icon {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.pokemon-element-icon img {
+  width: 4em;
+  height: 4em;
+  margin-right: 1em;
+}
+
+.pokemon-element-icon img.close-pokemon {
+  margin-right: 0;
+  cursor: pointer;
+}

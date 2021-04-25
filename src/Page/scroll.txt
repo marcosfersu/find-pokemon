@@ -1,0 +1,17 @@
+
+cosnt top = img.offsetTop
+consnt footTop = footer.offsetTop
+
+const maxY = footTop - img.offsetHeight
+
+let  y = window.scrollY;
+
+if (y > top) {
+  if (y < maxY) {
+    img.classList.add('fixed')
+  } else {
+    img.classList.remove('fixed')
+  }
+} else {
+    img.classList.remove('fixed')
+}

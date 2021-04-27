@@ -1,10 +1,14 @@
 import React,{FC, useState, useEffect, useRef} from 'react'
 import skeletonImg from './../../static/no-img.svg'
-import bgPokeballImg from './../../static/bg-pokeball-05.svg'
+import bgPokeballTopImg from './../../static/pokeball-bg-top.svg'
+import bgPokeballBottomImg from './../../static/pokeball-bg-bottom.svg'
+import { motion } from 'framer-motion'
 
 export type Props = {
     img: any
 }
+
+const transition = {  ease:[ 0.43, 0.13, 0.23, 0.96 ]}
 
 const MainImagePokemon:FC<Props> = ({img}) => {
 
@@ -13,15 +17,7 @@ const MainImagePokemon:FC<Props> = ({img}) => {
     const active = useRef<any>(null);
 
     useEffect( () => {
-        if ((imgSrc !== img) && (img !== null)) {
-
-                setImgSrc(img)
-
-                active.current.classList.add("active")
-    
-        } else {
-            if((img === null)) active.current.classList.remove("active")
-        }
+        setImgSrc(img)
     },[img])
     
     const reloadSrc = (e:any) => { 
@@ -35,9 +31,11 @@ const MainImagePokemon:FC<Props> = ({img}) => {
 
     return (
         <>
-        
-            <img src={imgSrc} alt={imgSrc} className="image-pokemon" ref={active}  onError={(e:any) => reloadSrc(e)} /> 
-            <img src={bgPokeballImg} alt="bg-pokeball" className="image-pokeball"/>
+            <motion.img initial={{opacity:0, scale: .8}} animate={{opacity: 1, scale: 1, transition:{delay: 1.4,duration: 1, ...transition} }} src={imgSrc} alt={imgSrc} className="image-pokemon" ref={active}  onError={(e:any) => reloadSrc(e)} /> 
+            <div className="image-pokeball">
+                <motion.img initial={{y:0}} animate={{y:-20, transition:{delay: 1,duration: .7, ...transition} }} src={bgPokeballTopImg} alt="bg-pokeball" />
+                <motion.img initial={{y:0}} animate={{y: 20, transition:{delay: 1,duration: .7, ...transition} }} src={bgPokeballBottomImg} alt="bg-pokeball" />
+            </div>
         </>
     )
 }

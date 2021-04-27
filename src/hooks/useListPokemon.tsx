@@ -5,6 +5,7 @@ import getSpritePokemons from '../utils/trasforms/getSpritePokemons';
 
 
 
+
 const useListPokemon = ( url:string, action:any) => {
 
     const [loading, setLoading] = useState(true)
@@ -19,8 +20,10 @@ const useListPokemon = ( url:string, action:any) => {
 
 
     const histories = useHistory()
-
-    const onClickHandler = useCallback((id) => {
+    
+    const onClickHandler = useCallback((id, e) => {
+        const bounding = e.currentTarget.getBoundingClientRect()
+        action({ type:`SET_BOUNDING`, payload: bounding })
         histories.push(`/pokemon/${id}`)
     },[histories])
 

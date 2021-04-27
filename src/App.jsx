@@ -1,15 +1,19 @@
 import React, {useReducer} from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, useLocation } from 'react-router-dom'
 import MainPage from './Page/MainPage';
 import PokemonPage from './Page/PokemonPage';
+import useWindowSize from './hooks/useWindowSize'
+
+import { AnimatePresence } from 'framer-motion'
 
 function App() {
-
+  const location = useLocation();
   const initialValue = {
     pokemons: [],
     url: "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=20",
     allPokemons: {},
-    allEvolutionPokemon: {}
+    allEvolutionPokemon: {},
+    bounding: ""
   }
 
   const reducer = (state, action) => {
@@ -32,6 +36,11 @@ function App() {
           case `SET_URL`:
             const newUrl = action.payload
             return { ...state, url:newUrl }
+
+            case `SET_BOUNDING`:
+            const newBounding = action.payload
+            console.log(newBounding)
+            return { ...state, bounding:newBounding }
   
         default: 
           return state
@@ -39,25 +48,27 @@ function App() {
   }
 
   const [state, dispatch] = useReducer(reducer, initialValue)
+  const size = useWindowSize()
 
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/">
-          <MainPage 
-            action={dispatch} 
-            data={state}  /> 
-        </Route>
-        <Route exact path="/pokemon/:id">
-          <PokemonPage 
-            action={dispatch}
-            data={state} />
-        </Route>
-        <Route>
-          Not Found
-        </Route>
-      </Switch>
-    </Router>
+      <AnimatePresence exitBeforeEnter>
+        <Switch location={location} key={location.pathname}>
+          <Route exact path="/">
+            <MainPage 
+              action={dispatch} 
+              data={state}  /> 
+          </Route>
+          <Route exact path="/pokemon/:id">
+            <PokemonPage 
+              action={dispatch}
+              data={state} 
+              size={size} />
+          </Route>
+          <Route>
+            Not Found
+          </Route>
+        </Switch>
+      </AnimatePresence>
   )
 }
 

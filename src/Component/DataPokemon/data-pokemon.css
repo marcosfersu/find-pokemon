@@ -39,6 +39,7 @@
   font-size: 7em;
   margin: 0;
   line-height: 1;
+  padding-bottom: 0.16em;
 }
 
 .title-pokemon h3.name-japanese {
@@ -68,19 +69,19 @@
 
 .data-pokemon.scroll-bar::-webkit-scrollbar-track {
   border-radius: 25px;
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 0 6px rgba(207, 207, 207, 0.2);
   background-color: var(--bgColor);
 }
 
 .data-pokemon.scroll-bar::-webkit-scrollbar {
   border-radius: 25px;
   width: 3px;
-  background-color: var(--bgColor);
+  background-color: #cccccc;
 }
 
 .data-pokemon.scroll-bar::-webkit-scrollbar-thumb {
   border-radius: 25px;
-  background-color: var(--bgColor);
+  background-color: #cccccc;
 }
 
 .data-pokemon > div > p.title-item {
@@ -132,7 +133,7 @@
 }
 
 .data-pokemon hr {
-  border-color: var(--segColor);
+  border-color: var(--bgColor);
 }
 
 .data-pokemon li.type-list.Bug {
@@ -186,4 +187,15 @@
 }
 .data-pokemon li.type-list.Fairy {
   background-color: #fb89eb;
+}
+
+.letter-wrap {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+}
+
+.move-list-pokemon {
+  display: flex;
+  align-items: center;
 }

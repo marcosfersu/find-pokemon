@@ -13,15 +13,24 @@ export type Props = {
     data: {
         pokemons: {},
         allPokemons: allPokemonsProps,
-        allEvolutionPokemon: {}
+        allEvolutionPokemon: {},
+        bounding: {
+            top: number;
+            right: number;
+            width: number;
+            height: number;
+        }
     }
     action: {}
+    size: {
+        width: number
+    }
 }
 
 
-const PokemonPage:FC<Props>  = ({ data, action }) => {
+const PokemonPage:FC<Props>  = ({ data, action, size }) => {
 
-    const {pokemons, allPokemons, allEvolutionPokemon} = data
+    const {pokemons, allPokemons, allEvolutionPokemon, bounding} = data
 
     const {idPokemon, evolutionPokemon, onClickHandler, onCloseHandler, bgType, error} = usePokemonPage( allPokemons, pokemons, allEvolutionPokemon, action)
 
@@ -42,7 +51,7 @@ const PokemonPage:FC<Props>  = ({ data, action }) => {
                         <DataPokemon data={allPokemons[`${idPokemon}`] && allPokemons[`${idPokemon}`].dataPokemon} evolution={evolutionPokemon}  />
                     </div>
                 </div>
-                <ImgPokemon data={(allPokemons[`${idPokemon}`]) && allPokemons[`${idPokemon}`].dataPokemon} onClickHandler={onClickHandler} onCloseHandler={onCloseHandler} />
+                <ImgPokemon data={(allPokemons[`${idPokemon}`]) && allPokemons[`${idPokemon}`].dataPokemon} onClickHandler={onClickHandler} onCloseHandler={onCloseHandler} bounding={bounding} size={size} />
             </div>
         </div>
     )

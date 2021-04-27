@@ -30,10 +30,12 @@ const usePokemonPage = ( allPokemons:allPokemonsProps, pokemons:allPokemonsProps
     const histories = useHistory()
 
     const onClickHandler = useCallback((id) => {
+        action({ type:`SET_BOUNDING`, payload: ""})
         histories.push(`/pokemon/${id}`)
     },[histories])
 
     const onCloseHandler = useCallback(() => {
+        action({ type:`SET_BOUNDING`, payload: ""})
         histories.push(`/`)
     },[histories])
 
@@ -46,6 +48,7 @@ const usePokemonPage = ( allPokemons:allPokemonsProps, pokemons:allPokemonsProps
         // chanchada ?
         let evolutionPosition = ""
         let evolutionMid = idPokemon
+
         
         if(allPokemons[`${idPokemon}`]) return
 
